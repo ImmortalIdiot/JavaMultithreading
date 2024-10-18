@@ -11,8 +11,8 @@ public class BoundedBufferTest {
         CountDownLatch finish = new CountDownLatch(2 * operations);
 
         for (int i = 0; i < operations; i++) {
-            new Thread(new IntegerPutter(buffer, start, finish));
-            new Thread(new IntegerTaker(buffer, start, finish));
+            new Thread(new IntegerPutter(buffer, start, finish)).start();
+            new Thread(new IntegerTaker(buffer, start, finish)).start();
         }
 
         start.countDown();
