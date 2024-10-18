@@ -16,18 +16,17 @@ class BoundedBuffer<T> {
     public synchronized void put(T item) throws InterruptedException {
         // TODO: Реализуйте метод
 
-        if (count == buffer.length) {
+        while (count == buffer.length) {
             wait();
         }
-        else {
-            buffer[in] = item;
-            count++;
-            in++; out++;
-            notifyAll();
 
-            System.out.println("Добавлен элемент: " + buffer[in - 1]);
-            System.out.println("Содержимое буфера: " + Arrays.toString(buffer));
-        }
+        buffer[in] = item;
+        count++;
+        in++; out++;
+        notifyAll();
+
+        System.out.println("Добавлен элемент: " + buffer[in - 1]);
+        System.out.println("Содержимое буфера: " + Arrays.toString(buffer));
     }
 
     public synchronized T take() throws InterruptedException {
