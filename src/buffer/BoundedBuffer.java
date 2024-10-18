@@ -1,5 +1,7 @@
 package buffer;
 
+import java.util.Arrays;
+
 class BoundedBuffer<T> {
     private final T[] buffer;
     private int count = 0;
@@ -22,6 +24,9 @@ class BoundedBuffer<T> {
             count++;
             in++; out++;
             notifyAll();
+
+            System.out.println("Добавлен элемент: " + buffer[in - 1]);
+            System.out.println("Содержимое буфера: " + Arrays.toString(buffer));
         }
     }
 
@@ -37,6 +42,10 @@ class BoundedBuffer<T> {
         count--;
         out--; in--;
         notifyAll();
+
+        System.out.println("Взят элемент: " + buffer[out]);
+        buffer[out] = null;
+        System.out.println("Содержимое буфера: " + Arrays.toString(buffer));
 
         return object;
     }
