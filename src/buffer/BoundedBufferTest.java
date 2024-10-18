@@ -4,7 +4,7 @@ import java.util.concurrent.CountDownLatch;
 
 public class BoundedBufferTest {
     public static void main(String[] args) throws InterruptedException {
-        BoundedBuffer<Integer> buffer = new BoundedBuffer<>(50);
+        BoundedBuffer<Integer> buffer = new BoundedBuffer<>(10);
         int operations = 10;
 
         CountDownLatch start = new CountDownLatch(1);
