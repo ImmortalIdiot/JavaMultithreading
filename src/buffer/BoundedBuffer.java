@@ -40,4 +40,8 @@ class BoundedBuffer<T> {
 
         return object;
     }
+
+    public int size() {
+        return buffer.length;
+    }
 }
